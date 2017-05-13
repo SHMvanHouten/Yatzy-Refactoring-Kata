@@ -107,9 +107,10 @@ public class YatzyTest {
 
     @Test
     public void smallStraight() {
-        assertEquals(15, Yatzy.scoreSmallStraight(1, 2, 3, 4, 5));
-        assertEquals(15, Yatzy.scoreSmallStraight(2, 3, 4, 5, 1));
-        assertEquals(0, Yatzy.scoreSmallStraight(1, 2, 2, 4, 5));
+        // small straight according to the rules set by this Kata.(rules of yatzy not yahtzee)
+        assertEquals(15, Yatzy.scoreSmallStraight(new int[]{1, 2, 3, 4, 5}));
+        assertEquals(15, Yatzy.scoreSmallStraight(new int[]{2, 3, 4, 5, 1}));
+        assertEquals(0, Yatzy.scoreSmallStraight(new int[]{1, 2, 2, 4, 5}));
     }
 
     @Test
