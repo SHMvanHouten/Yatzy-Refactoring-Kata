@@ -73,30 +73,19 @@ public class Yatzy {
     }
 
     static int scoreSmallStraight(int[] dice) {
-        Arrays.sort(dice);
-        for (int i = 0; i < 4; i++) {
-            if(dice[i] != i + 1){
-                return 0;
-            }
+        if (isAStraight(dice, true)){
+            return 15;
+        }else {
+            return 0;
         }
-        return 15;
     }
 
-    public static int scoreLargeStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1)
+    public static int scoreLargeStraight(int[] dice) {
+        if (isAStraight(dice, false)){
             return 20;
-        return 0;
+        }else {
+            return 0;
+        }
     }
 
     public static int scoreFullHouse(int d1, int d2, int d3, int d4, int d5) {
@@ -158,6 +147,17 @@ public class Yatzy {
             amountOfEachDie[die - 1]++;
         }
         return amountOfEachDie;
+    }
+
+    private static boolean isAStraight(int[] dice, boolean small) {
+        Arrays.sort(dice);
+        int n = small? 1 : 2;
+        for (int i = 0; i < dice.length; i++) {
+            if(dice[i] != i + n){
+                return false;
+            }
+        }
+        return true;
     }
 }
 
