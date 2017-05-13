@@ -5,37 +5,39 @@ public class YatzyTest {
 
     @Test
     public void chance_scores_sum_of_all_dice() {
+        Yatzy game = new Yatzy(2,3,4,5,1);
         int expected = 15;
-        int actual = Yatzy.chance(2,3,4,5,1);
+        int actual = game.chance();
         assertEquals(expected, actual);
-        assertEquals(16, Yatzy.chance(3,3,4,5,1));
+        assertEquals(16, new Yatzy(3,3,4,5,1).chance());
     }
 
     @Test public void yatzy_scores_50() {
+        Yatzy game = new Yatzy(4,4,4,4,4);
         int expected = 50;
-        int actual = Yatzy.yatzy(4,4,4,4,4);
+        int actual = game.yatzy();
         assertEquals(expected, actual);
-        assertEquals(50, Yatzy.yatzy(6,6,6,6,6));
-        assertEquals(0, Yatzy.yatzy(6,6,6,6,3));
+        assertEquals(50, new Yatzy(6,6,6,6,6).yatzy());
+        assertEquals(0, new Yatzy(6,6,6,6,3).yatzy());
     }
 
     @Test public void test_1s() {
-        assertTrue(Yatzy.ones(1,2,3,4,5) == 1);
-        assertEquals(2, Yatzy.ones(1,2,1,4,5));
-        assertEquals(0, Yatzy.ones(6,2,2,4,5));
-        assertEquals(4, Yatzy.ones(1,2,1,1,1));
+        assertTrue(new Yatzy(1,2,3,4,5).ones() == 1);
+        assertEquals(2, new Yatzy(1,2,1,4,5).ones());
+        assertEquals(0, new Yatzy(6,2,2,4,5).ones());
+        assertEquals(4, new Yatzy(1,2,1,1,1).ones());
     }
 
     @Test
     public void test_2s() {
-        assertEquals(4, Yatzy.twos(1,2,3,2,6));
-        assertEquals(10, Yatzy.twos(2,2,2,2,2));
+        assertEquals(4, new Yatzy(1,2,3,2,6).twos());
+        assertEquals(10, new Yatzy(2,2,2,2,2).twos());
     }
 
     @Test
     public void test_threes() {
-        assertEquals(6, Yatzy.threes(1,2,3,2,3));
-        assertEquals(12, Yatzy.threes(2,3,3,3,3));
+        assertEquals(6, new Yatzy(1,2,3,2,3).threes());
+        assertEquals(12, new Yatzy(2,3,3,3,3).threes());
     }
 
     @Test

@@ -1,61 +1,7 @@
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5)
-    {
-        int total = 0;
-        total += d1;
-        total += d2;
-        total += d3;
-        total += d4;
-        total += d5;
-        return total;
-    }
-
-    public static int yatzy(int... dice)
-    {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die-1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
-    }
-
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1) 
-            sum++;
-
-        return sum;
-    }
-
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2) sum += 2;
-        if (d2 == 2) sum += 2;
-        if (d3 == 2) sum += 2;
-        if (d4 == 2) sum += 2;
-        if (d5 == 2) sum += 2;
-        return sum;
-    }
-
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;    
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
-    }
-
     protected int[] dice;
+
     public Yatzy(int d1, int d2, int d3, int d4, int _5)
     {
         dice = new int[5];
@@ -66,35 +12,50 @@ public class Yatzy {
         dice[4] = _5;
     }
 
-    public int fours()
+    int chance()
     {
-        int sum;    
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
+        int total = 0;
+        for (int die : dice) {
+            total += die;
+        }
+        return total;
+    }
+
+    int yatzy()
+    {
+        int firstDie = dice[0];
+        for (int die : dice) {
+            if(die != firstDie){
+                return 0;
             }
         }
-        return sum;
+        return 50;
+    }
+
+    int ones() {
+        return sumUpAllDieOfType(1);
+    }
+
+    int twos() {
+        return sumUpAllDieOfType(2);
+    }
+
+    int threes() {
+        return sumUpAllDieOfType(3);
+    }
+
+    public int fours() {
+        return sumUpAllDieOfType(4);
     }
 
     public int fives()
     {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++) 
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+        return sumUpAllDieOfType(5);
     }
 
     public int sixes()
     {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++) 
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+        return sumUpAllDieOfType(6);
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5)
@@ -234,6 +195,16 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
+    }
+
+    private int sumUpAllDieOfType(int eyes) {
+        int sum = 0;
+        for (int die : dice) {
+            if(die == eyes){
+                sum += eyes;
+            }
+        }
+        return sum;
     }
 }
 
