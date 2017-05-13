@@ -1,15 +1,15 @@
 public class Yatzy {
 
-    protected int[] dice;
+    private int[] dice;
 
-    public Yatzy(int d1, int d2, int d3, int d4, int _5)
+    Yatzy(int d1, int d2, int d3, int d4, int d5)
     {
         dice = new int[5];
         dice[0] = d1;
         dice[1] = d2;
         dice[2] = d3;
         dice[3] = d4;
-        dice[4] = _5;
+        dice[4] = d5;
     }
 
     int chance()
@@ -44,16 +44,16 @@ public class Yatzy {
         return sumUpAllDieOfType(3);
     }
 
-    public int fours() {
+    int fours() {
         return sumUpAllDieOfType(4);
     }
 
-    public int fives()
+    int fives()
     {
         return sumUpAllDieOfType(5);
     }
 
-    public int sixes()
+    int sixes()
     {
         return sumUpAllDieOfType(6);
     }
