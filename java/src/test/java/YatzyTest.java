@@ -122,7 +122,8 @@ public class YatzyTest {
 
     @Test
     public void fullHouse() {
-        assertEquals(18, Yatzy.scoreFullHouse(6, 2, 2, 2, 6));
-        assertEquals(0, Yatzy.scoreFullHouse(2, 3, 4, 5, 6));
+        Yatzy game = new Yatzy();
+        assertEquals(18, game.scoreFullHouse(new int[]{6, 2, 2, 2, 6}));
+        assertEquals(0, game.scoreFullHouse(new int[]{2, 3, 4, 5, 6}));
     }
 }

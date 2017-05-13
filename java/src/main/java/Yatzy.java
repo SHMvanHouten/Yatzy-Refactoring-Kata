@@ -88,38 +88,26 @@ public class Yatzy {
         }
     }
 
-    public static int scoreFullHouse(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        boolean _2 = false;
-        int i;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
+    public int scoreFullHouse(int[] dice) {
 
-
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 2) {
-                _2 = true;
-                _2_at = i + 1;
+        int[] amountOfEachDie= getAmountOfEachDie(dice);
+        boolean hasDoubles = false;
+        boolean hasTriples = false;
+        int score = 0;
+        for (int index = 0; index < amountOfEachDie.length; index++) {
+            if(amountOfEachDie[index] == 2){
+                hasDoubles = true;
+                score += (index + 1) * 2;
+            }else if(amountOfEachDie[index] == 3){
+                hasTriples = true;
+                score += (index + 1) * 3;
             }
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 3) {
-                _3 = true;
-                _3_at = i + 1;
-            }
-
-        if (_2 && _3)
-            return _2_at * 2 + _3_at * 3;
-        else
+        }
+        if(hasDoubles && hasTriples){
+            return score;
+        }else {
             return 0;
+        }
     }
 
     private int sumUpAllDieOfType(int eyes, int[] dice) {
@@ -134,7 +122,7 @@ public class Yatzy {
 
     private int scoreNOfAKind(int n, int[] dice) {
         int[] amountOfEachDie = getAmountOfEachDie(dice);
-        for (int index = 5; index >= 0; index--)
+        for (int index = amountOfEachDie.length -1; index >= 0; index--)
             if (amountOfEachDie[index] >= n) {
                 return (index + 1) * n;
             }
